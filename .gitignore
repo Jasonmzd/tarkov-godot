@@ -1,0 +1,22 @@
+# Godot export
+export/
+export.exe
+
+# Godot user files
+.godot/
+*.save
+*.tres~
+
+# Godot temp
+*.pyc
+__pycache__/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

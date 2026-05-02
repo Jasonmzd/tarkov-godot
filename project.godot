@@ -1,0 +1,55 @@
+[gd_project]
+
+config_version=5
+
+_global_script_classes=[{
+"base": "CharacterBody3D",
+"class": &"Player",
+"language": &"GDScript",
+"path": "res://scripts/player/player.gd"
+}, {
+"base": "Node3D",
+"class": &"LootContainer",
+"language": &"GDScript",
+"path": "res://scripts/loot/loot_container.gd"
+}, {
+"base": "Node",
+"class": &"InventoryManager",
+"language": &"GDScript",
+"path": "res://scripts/inventory/inventory_manager.gd"
+}]
+
+_global_script_class_icons={
+"InventoryManager": "",
+"LootContainer": "",
+"Player": ""
+}
+
+[application]
+
+config/name="Tarkov-Godot"
+config/description="Tarkov-like game optimized for mobile (8GB) and PC (12GB)"
+config/version="0.1.0"
+run/main_scene="res://scenes/main.tscn"
+config/features=PackedStringArray("4.3", "GL Compatibility")
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/handheld/orientation=1
+
+[physics]
+
+physics_engine="GodotPhysics3D"
+
+[rendering]
+
+textures/vram_compression/import_etc2_astc=true
+textures/vram_compression/import_s3tc_bptc=true
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+environment/ambient_light/ambient_light_source=1
+environment/ambient_light/ambient_light_energy=1.0
+global_illumination/gi_probes/quality=0
+global_illumination/sdfgi/enabled=false
