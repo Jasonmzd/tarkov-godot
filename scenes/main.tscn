@@ -1,0 +1,73 @@
+[gd_scene load_steps=6 format=3 uid="uid://d3mqoqxpwwmqoj"]
+
+[ext_resource type="Script" path="res://scripts/main.gd"]
+[ext_resource type="PackedScene" uid="uid://bpvo8kmgx4f6l" path="res://scenes/player.tscn"]
+[ext_resource type="Script" path="res://scripts/loot/loot_container.gd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ground"]
+albedo_color = Color(0.3, 0.3, 0.3, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_container"]
+albedo_color = Color(0.8, 0.6, 0.2, 1)
+
+[node name="Main" type="Node3D"]
+script = ExtResource("Script" path="res://scripts/main.gd")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866025, -0.25, 0.433013, 0, 0.866025, 0.5, -0.5, -0.433013, 0.75, 0, 10, 0)
+energy_multiplier = 2.0
+
+[node name="Ground" type="CSGBox3D" parent="."]
+size = Vector3(100, 1, 100)
+material = SubResource("StandardMaterial3D_ground")
+
+[node name="Player" parent="." instance=ExtResource("PackedScene" uid="uid://bpvo8kmgx4f6l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="LootContainer" type="Node3D" parent="." groups=["loot_containers"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 5)
+script = ExtResource("Script" path="res://scripts/loot/loot_container.gd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LootContainer"]
+mesh = BoxMesh.new()
+material_override = SubResource("StandardMaterial3D_container")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LootContainer"]
+shape = BoxShape3D.new()
+
+[node name="LootContainer2" type="Node3D" parent="." groups=["loot_containers"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1, 8)
+script = ExtResource("Script" path="res://scripts/loot/loot_container.gd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LootContainer2"]
+mesh = BoxMesh.new()
+material_override = SubResource("StandardMaterial3D_container")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LootContainer2"]
+shape = BoxShape3D.new()
+
+[node name="LootContainer3" type="Node3D" parent="." groups=["loot_containers"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 1, -5)
+script = ExtResource("Script" path="res://scripts/loot/loot_container.gd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LootContainer3"]
+mesh = BoxMesh.new()
+material_override = SubResource("StandardMaterial3D_container")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LootContainer3"]
+shape = BoxShape3D.new()
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_left = 0.0
+anchors_top = 0.0
+anchors_right = 0.0
+anchors_bottom = 0.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 800.0
+offset_bottom = 50.0
+text = "Inventory: 0/20 | WASD: Move | Shift: Sprint | E: Loot | Esc: Menu"
